@@ -1,3 +1,4 @@
-app:
-    resource: "@AppBundle/Controller/"
+to_do_list:
+    resource: "@ToDoListBundle/Controller/"
     type:     annotation
+    prefix:   /
