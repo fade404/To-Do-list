@@ -18,6 +18,12 @@ class DefaultController extends Controller {
         $taskRepo = $this->getDoctrine()->getRepository('ToDoListBundle:Task');
         $tasks = $taskRepo->findAll();
 
+        if(!$tasks) {
+            return [
+                'error' => 'Brak zadań'
+            ];
+        }
+        
         return [
             'tasks' => $tasks
         ];

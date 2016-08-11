@@ -1,6 +1,9 @@
-{% for task in tasks %}
-    Tytuł: {{task.title}}<br>
-    Treść: {{task.description}}<br>
-    Termin: {{task.date|date('Y-m-d')}}<br>
-    
-{% endfor %}
+{% if error is defined %}
+    {{error}}
+{% else %}
+    {% for task in tasks %}
+        Tytuł: {{task.title}}<br>
+        Treść: {{task.description}}<br>
+        Termin: {{task.date|date('Y-m-d')}}<br>
+    {% endfor %}
+{%endif%}
