@@ -26,9 +26,9 @@
                                     <td>{{task.date|date('Y-m-d') }}</td> 
                                     <td>
                                         <!-- Trigger the modal with a button -->
-                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#{{task.title}}">Usuń</button>
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#{{task.id}}">Usuń</button>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="{{task.title}}" role="dialog">
+                                        <div class="modal fade" id="{{task.id}}" role="dialog">
                                             <div class="modal-dialog">
                                                 <!-- Modal content-->
                                                 <div class="modal-content">
