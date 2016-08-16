@@ -42,7 +42,6 @@ class DefaultController extends Controller {
                 ->add('title', 'text', ['label' => 'Nazwa zadania'])
                 ->add('description', 'text', ['label' => 'Treść'])
                 ->add('date', 'date', ['label' => 'Termin'])
-                ->add('save', 'submit', ['label' => 'Dodaj'])
                 ->getForm();
 
         $form->handleRequest($req);

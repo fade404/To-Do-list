@@ -1,9 +1,64 @@
-{% if error is defined %}
-    {{error}}
-{% else %}
-    {% for task in tasks %}
-        Tytuł: {{task.title}}<br>
-        Treść: {{task.description}}<br>
-        Termin: {{task.date|date('Y-m-d')}}<br>
-    {% endfor %}
-{%endif%}
+{% extends "ToDoListBundle::base.html.twig" %}
+
+{% block content %},
+    <div class="container">
+        {% if error is not defined %}
+            <div class="col-md-8 col-md-offset-2">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center table-1">
+                        <div class="text-center w100"><h2>Zadania</h2></div><br>
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Tytuł</th>
+                                <th class="text-center">Treść</th>
+                                <th class="text-center">Termin</th>
+                                <th class="text-center">Akcje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set i=1 %}
+                            {% for task in tasks %}
+                                <tr>
+                                    <td>{{i}}</td> 
+                                    <td>{{task.title}}</td>
+                                    <td>{{task.description}}</td>
+                                    <td>{{task.date|date('Y-m-d') }}</td> 
+                                    <td>
+                                        <!-- Trigger the modal with a button -->
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#{{task.title}}">Usuń</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="{{task.title}}" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Usuwanie</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Czy na pewno chcesz usunąć zadanie {{task.title}}?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="{{ path ('delete', {'id': task.id})}}" class="btn btn-danger">Usuń</a>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td> 
+                                </tr>
+                                {% set i = i+1 %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-danger fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{error}}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
